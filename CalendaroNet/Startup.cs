@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using CalendaroNet.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CalendaroNet.Services;
 
 namespace CalendaroNet
 {
@@ -41,6 +42,7 @@ namespace CalendaroNet
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped<ITodoItemService, TodoItemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
