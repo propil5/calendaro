@@ -13,6 +13,7 @@ using CalendaroNet.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CalendaroNet.Services;
+using MySql.Data;
 
 namespace CalendaroNet
 {
@@ -36,7 +37,7 @@ namespace CalendaroNet
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -51,6 +52,8 @@ namespace CalendaroNet
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+
                 app.UseDatabaseErrorPage();
             }
             else
