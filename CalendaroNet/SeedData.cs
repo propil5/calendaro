@@ -17,7 +17,7 @@ namespace CalendaroNet
             await EnsureRolesAsync(roleManager);
 
             var userManager = services
-                .GetRequiredService<UserManager<IdentityUser>>();
+                .GetRequiredService<UserManager<ApplicationUser>>();
             await EnsureTestAdminAsync(userManager);
         }
 
@@ -33,7 +33,7 @@ namespace CalendaroNet
         }
 
         private static async Task EnsureTestAdminAsync(
-        UserManager<IdentityUser> userManager)
+        UserManager<ApplicationUser> userManager)
         {
             var testAdmin = await userManager.Users
                 .Where(x => x.UserName == "basic@calendaro.net")
@@ -41,7 +41,7 @@ namespace CalendaroNet
             //If there is no Admin account we will create one
             if (testAdmin != null) return;
             
-            testAdmin = new IdentityUser
+            testAdmin = new ApplicationUser
             {
                 UserName = "basic@calendaro.net",
                 Email = "basic@calendaro.net"

@@ -13,13 +13,13 @@ namespace CalendaroNet.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -39,6 +39,16 @@ namespace CalendaroNet.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Full name")]
+            public string Name { get; set; }
+
+            [Required]
+            [Range(0, 199, ErrorMessage = "Age must be between 0 and 199 years")]
+            [Display(Name = "Age")]
+            public int Age { get; set; }
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
@@ -64,8 +74,10 @@ namespace CalendaroNet.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                Email = email,
-                PhoneNumber = phoneNumber
+                Name = user.Name,
+                Age = user.Age,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -106,6 +118,22 @@ namespace CalendaroNet.Areas.Identity.Pages.Account.Manage
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
+            }
+
+            if (Input.Name != user.Name)
+            {
+                user.Name = Input.Name;
+            }
+
+            if (Input.Age != user.Age)
+            {
+                user.Age = Input.Age;
+            }
+
+            var updateProfileResult = await _userManager.UpdateAsync(user);
+            if (!updateProfileResult.Succeeded)
+            {
+                throw new InvalidOperationException($"Unexpected error ocurred updating the profile for user with ID '{user.Id}'");
             }
 
             await _signInManager.RefreshSignInAsync(user);

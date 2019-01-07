@@ -39,10 +39,9 @@ namespace CalendaroNet
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            //przy problemach z codegenerator zmienić folder z 2.2.0 na 2.2.0-rtm-35687
-            //.AddDefaultUI() //zakomentowane bo wytworzony kod z generatora (dotnet aspnet-codegenerator identity -dc CalendaroNet.Data.ApplicationDbContext)
+            .AddDefaultUI() 
             .AddDefaultTokenProviders();
 
             //Add app services

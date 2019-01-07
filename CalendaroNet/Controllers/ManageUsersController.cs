@@ -12,11 +12,11 @@ namespace AspNetCoreTodo.Controllers
     [Authorize(Roles = "Administrator")]
     public class ManageUsersController : Controller
     {
-        private readonly UserManager<IdentityUser>
+        private readonly UserManager<ApplicationUser>
             _userManager;
 
         public ManageUsersController(
-            UserManager<IdentityUser> userManager)
+            UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
