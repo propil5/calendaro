@@ -13,8 +13,7 @@ namespace CalendaroNet
         public static async Task InitializeAsync(
             IServiceProvider services)
         {
-            var roleManager = services
-                .GetRequiredService<RoleManager<IdentityRole>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
             await EnsureRolesAsync(roleManager);
 
             var userManager = services
@@ -25,8 +24,7 @@ namespace CalendaroNet
         private static async Task EnsureRolesAsync(
         RoleManager<IdentityRole> roleManager)
         {
-            var alreadyExists = await roleManager
-                .RoleExistsAsync(Constants.AdministratorRole);
+            var alreadyExists = await roleManager.RoleExistsAsync(Constants.AdministratorRole);
 
             if (alreadyExists) return;
 
@@ -38,15 +36,15 @@ namespace CalendaroNet
         UserManager<IdentityUser> userManager)
         {
             var testAdmin = await userManager.Users
-                .Where(x => x.UserName == "admin@calendaro.net")
+                .Where(x => x.UserName == "basic@calendaro.net")
                 .SingleOrDefaultAsync();
             //If there is no Admin account we will create one
             if (testAdmin != null) return;
             
             testAdmin = new IdentityUser
             {
-                UserName = "admin@calendaro.net",
-                Email = "admin@calendaro.net"
+                UserName = "basic@calendaro.net",
+                Email = "basic@calendaro.net"
             };
             //Default values for Admin account ensure to change at least password!!!
             await userManager.CreateAsync(
