@@ -41,7 +41,8 @@ namespace CalendaroNet
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultUI()
+            //przy problemach z codegenerator zmienić folder z 2.2.0 na 2.2.0-rtm-35687
+            //.AddDefaultUI() //zakomentowane bo wytworzony kod z generatora (dotnet aspnet-codegenerator identity -dc CalendaroNet.Data.ApplicationDbContext)
             .AddDefaultTokenProviders();
 
             //Add app services
