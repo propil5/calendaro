@@ -48,6 +48,7 @@ namespace CalendaroNet
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<ITodoItemService, TodoItemService>();
+            services.AddScoped<IServiceService, ServiceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
