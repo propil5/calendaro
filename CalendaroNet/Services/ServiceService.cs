@@ -11,6 +11,14 @@ namespace CalendaroNet.Services
     {
         
         private readonly ApplicationDbContext _context;
+        
+        #region ServiceService()
+        public ServiceService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        #endregion
+
         #region AddServiceAsync()
         public async Task<bool> AddServiceAsync(Service newService)
         {
@@ -63,18 +71,18 @@ namespace CalendaroNet.Services
                 
             } 
         
-        var saveResult = await _context.SaveChangesAsync();
-        return saveResult == 1;
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
         }
         #endregion
 
-       #region GetListOfAllServices()
+        #region GetListOfAllServices()
         public async Task<Service[]> GetListOfAllServicesAsync()
         {
             var services = await _context.Services
                 .ToArrayAsync();
             return services;
         }
-
+        #endregion
     }
 }

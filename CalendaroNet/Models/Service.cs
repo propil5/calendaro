@@ -14,6 +14,6 @@ namespace CalendaroNet.Models
 
         public TimeSpan TimeRequired { get; set; }
 
-        public String RoleReqired {get; set;}
+        public bool RoleReqired {get; set;}
     }
 }

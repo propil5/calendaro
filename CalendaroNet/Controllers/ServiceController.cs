@@ -36,43 +36,37 @@ namespace CalendaroNet.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> AddService(TodoItem newItem)
+        public async Task<IActionResult> AddService(Service newService)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Index");
             }
 
-            var currentUser = await _userManager.GetUserAsync(User);
-            if (currentUser == null) return Challenge();
 
-            var successful = await _todoItemService
-            .AddItemAsync(newItem, currentUser);
+            var successful = await _serviceService
+            .AddServiceAsync(newService);
 
             if (!successful)
             {
-                return BadRequest("Could not add item.");
+                return BadRequest("Could not add service.");
             }
 
             return RedirectToAction("Index");
         }
 
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MarkDone(Guid id)
+        public async Task<IActionResult> DeleteServiceAsync(Guid id)
         {
             if (id == Guid.Empty)
             {
                 return RedirectToAction("Index");
             }
 
-            var currentUser = await _userManager.GetUserAsync(User);
-            if (currentUser == null) return Challenge();
-
-
-            var successful = await _todoItemService.MarkDoneAsync(id, currentUser);
+            var successful = await _serviceService.DeleteServiceAsync(id);
             if (!successful)
             {
-                return BadRequest("Could not mark item as done.");
+                return BadRequest("Could not delete service.");
             }
 
             return RedirectToAction("Index");

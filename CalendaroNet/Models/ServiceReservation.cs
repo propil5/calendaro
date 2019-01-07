@@ -6,9 +6,13 @@ namespace CalendaroNet.Models
     public class ServiceReservation
     {
         public Guid Id { get; set; }
-                
-        public String ServiceId { get; set; }
+        
+        [Required]
+        public Guid ServiceId { get; set; }
 
-        public String UserId {get; set;}
+        [Required]
+        public Guid UserId { get; set; }
+
+        public DateTimeOffset ReservationDate { get; set; }
     }
 }
