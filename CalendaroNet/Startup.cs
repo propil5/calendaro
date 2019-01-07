@@ -39,8 +39,9 @@ namespace CalendaroNet
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultUI()
             .AddDefaultTokenProviders();
 
             //Add app services
