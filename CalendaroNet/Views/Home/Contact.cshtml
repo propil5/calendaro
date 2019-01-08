@@ -1,17 +1,114 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Kontakt";
 }
 <h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<!-- //<h3>@ViewData["Message"]</h3> -->
+
+<!-- <head>
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    //The div element for the map -->
+    <!-- <div id="map"></div>
+    <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 49.682019, lng: 21.768521};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 15, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB02SQellPTdkpAt4lHw4wHDs0USsap85U&callback=initMap">
+    </script>
+  </body> -->
+<div class="row" id="contact">
+<div class="container mt-5" >
+
+    <div class="row" style="height:550px;">
+      <div class="col-md-7 maps" >
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d82713.22172230785!2d21.72161381720766!3d49.62059791803995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x423b1ec61ba015df!2sPa%C5%84stwowa+Wy%C5%BCsza+Szko%C5%82a+Zawodowa+im.+Stanis%C5%82awa+Pigonia+w+Kro%C5%9Bnie!5e0!3m2!1spl!2spl!4v1546942892057" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+      <div class="col-md-5">
+        <h2 class="text-uppercase mt-3 font-weight-bold text-white">Formularz kontaktowy</h2>
+        <form action="">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input type="text" class="form-control mt-2" placeholder="Name" required>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input type="text" class="form-control mt-2" placeholder="Surname" required>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input type="email" class="form-control mt-2" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <input type="number" class="form-control mt-2" placeholder="Telephone" required>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Accepted" rows="3" required></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                <label class="form-check-label" for="invalidCheck2">
+                  Akceptujesz wrunki
+                </label>
+              </div>
+            </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-light" type="submit">Wyślij</button>
+            </div>
+          </div>
+        </form>
+        <div class="text-white">
+        <h2 class="text-uppercase mt-4 font-weight-bold">Prywatna klinika</h2>
+
+        <i class="fas fa-phone mt-3"></i> <a href="tel:+">(+38) 123456</a><br>
+        <i class="fas fa-phone mt-3"></i> <a href="tel:+">(+38) 123456</a><br>
+        <i class="fa fa-envelope mt-3"></i> <a href="">info@calendaro.net</a><br>
+        <i class="fas fa-globe mt-3"></i>Klinika, Wyspianskiego 1, 38-430 Krosno<br>
+        <div class="my-4">
+        <a href=""><i class="fab fa-facebook fa-3x pr-4"></i></a>
+        <a href=""><i class="fab fa-linkedin fa-3x"></i></a>
+        </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+</div>
+
+
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    <strong>Support:</strong> <a href="mailto:Support@calendaro.net">Support@example.com</a><br />
 </address>
