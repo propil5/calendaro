@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CalendaroNet.Data;
-using CalendaroNet.Models;
+using CalendaroNet.Models.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace CalendaroNet.Services
@@ -55,7 +55,7 @@ namespace CalendaroNet.Services
         #endregion
 
         #region EditService()
-        public async Task<bool> EditServiceAsync(Guid id, Service changedService)
+        public async Task<bool> UpdateServiceAsync(Guid id, Service changedService)
         {
             var service = await _context.Services
                 .Where(x => x.Id == id)

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalendaroNet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190107212125_ApplicationUser")]
-    partial class ApplicationUser
+    [Migration("20190114195615_UpdateEmployee1")]
+    partial class UpdateEmployee1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,7 +73,39 @@ namespace CalendaroNet.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("CalendaroNet.Models.Service", b =>
+            modelBuilder.Entity("CalendaroNet.Models.Employee.Employee", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AdedById");
+
+                    b.Property<double>("BaseMonthSalary");
+
+                    b.Property<DateTimeOffset?>("ContractEndDate");
+
+                    b.Property<DateTimeOffset>("CreatedDate");
+
+                    b.Property<string>("EditedById");
+
+                    b.Property<DateTimeOffset>("EmploymentDate");
+
+                    b.Property<DateTimeOffset?>("UpdateDate");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdedById");
+
+                    b.HasIndex("EditedById");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("CalendaroNet.Models.Service.Service", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -220,6 +252,21 @@ namespace CalendaroNet.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CalendaroNet.Models.Employee.Employee", b =>
+                {
+                    b.HasOne("ApplicationUser", "AdedBy")
+                        .WithMany()
+                        .HasForeignKey("AdedById");
+
+                    b.HasOne("ApplicationUser", "EditedBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.HasOne("ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

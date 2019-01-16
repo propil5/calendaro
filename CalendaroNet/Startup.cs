@@ -48,6 +48,7 @@ namespace CalendaroNet
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<ITodoItemService, TodoItemService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IServiceService, ServiceService>();
         }
 

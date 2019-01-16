@@ -1,4 +1,4 @@
-namespace CalendaroNet.Models
+namespace CalendaroNet.Models.Service
 {
     public class ServiceViewModel
     {

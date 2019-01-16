@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CalendaroNet.Models
+namespace CalendaroNet.Models.Service
 {
     public class ServiceRole
     {
