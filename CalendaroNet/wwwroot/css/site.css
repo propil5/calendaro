@@ -35,3 +35,21 @@ body {
         display: none;
     }
 }
+
+.carousel .item img{
+    max-height: 1080px !important;
+}
+
+.nav a{
+    margin-top: 4px;
+    /* color: rgb(1, 30, 49) !important;
+    font-size: 1.2em !important; */
+    }
+.nav button{
+    margin-top: 12px;
+}
+
+.lightercolor{
+
+        color: rgb(155, 44, 44) !important;
+}
