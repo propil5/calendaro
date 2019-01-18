@@ -39,21 +39,23 @@ namespace CalendaroNet
             });
 
             //Use SQL Database if in Azure, otherwise, use SQLite
-            if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
-                services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
-            else
-                services.AddDbContext<ApplicationDbContext>(options =>
+            // if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            // services.AddDbContext<ApplicationDbContext>(options =>
+            //             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection1")));
+            // else
+            services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseMySql(Configuration.GetConnectionString("LocalConnection")));
 
             // Automatically perform database migration
-            services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
+            //services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
             
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI() 
             .AddDefaultTokenProviders();
 
+
+            services.AddAuthentication();
             //Add app services
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddTransient<IEmailSender, EmailSender>();
