@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CalendaroNet.Services;
 using MySql.Data;
+using CalendaroNet.Services.Employees;
+using CalendaroNet.Services.TodoItems;
 
 namespace CalendaroNet
 {
@@ -36,9 +38,17 @@ namespace CalendaroNet
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            // Use SQL Database if in Azure, otherwise, use SQLite
+            // if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            //     services.AddDbContext<ApplicationDbContext>(options =>
+            //             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // else
+                services.AddDbContext<ApplicationDbContext>(options =>
+                        options.UseMySql(Configuration.GetConnectionString("LocalConnection")));
+
+            // Automatically perform database migration
+            services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
+            
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI() 
@@ -47,8 +57,8 @@ namespace CalendaroNet
             //Add app services
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddTransient<IEmailSender, EmailSender>();
-            services.AddScoped<ITodoItemService, TodoItemService>();
-            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<ITodoItemsService, TodoItemsService>();
+            services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<IServiceService, ServiceService>();
         }
 

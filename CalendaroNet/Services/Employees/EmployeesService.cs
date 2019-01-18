@@ -1,22 +1,21 @@
 using System;
 using System.Threading.Tasks;
 using CalendaroNet.Data;
-using CalendaroNet.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using CalendaroNet.Models.Employee;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace CalendaroNet.Services
+namespace CalendaroNet.Services.Employees
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeesService : IEmployeesService
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser>  _userManager;
 
         #region EmployeeService()
-        public EmployeeService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public EmployeesService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;

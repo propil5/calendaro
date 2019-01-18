@@ -7,13 +7,13 @@ using CalendaroNet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace CalendaroNet.Services
+namespace CalendaroNet.Services.TodoItems
 {
-    public class TodoItemService : ITodoItemService
+    public class TodoItemsService : ITodoItemsService
     {
         private readonly ApplicationDbContext _context;
 
-        public TodoItemService(ApplicationDbContext context)
+        public TodoItemsService(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using CalendaroNet.Models;
 using CalendaroNet.Models.Employee;
 using CalendaroNet.Models.Service;
-using CalendaroNet.Services;
+using CalendaroNet.Services.Employees;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +17,11 @@ namespace CalendaroNet.Controllers
     public class EmployeeController : Controller
     {
 
-        private readonly IEmployeeService _employeeService;
+        private readonly IEmployeesService _employeeService;
         private readonly UserManager<ApplicationUser>  _userManager;
 
 
-        public EmployeeController(IEmployeeService EmployeeService, UserManager<ApplicationUser> userManager)
+        public EmployeeController(IEmployeesService EmployeeService, UserManager<ApplicationUser> userManager)
         {
             _employeeService = EmployeeService;
             _userManager = userManager;
@@ -78,41 +78,7 @@ namespace CalendaroNet.Controllers
 
             if (!successful)
             {
-                return BadRequest("Could not add service.");
-            }
-
-
-            return RedirectToAction("Index");
-
-        }
-
-        public async Task<IActionResult> AddEmployeeSchedule(AddEmployeeViewModel newEmployee)
-        {
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction("Huj");
-            }
-            var currentUser = await _userManager.GetUserAsync(User);
-            var employeeUser = await _userManager.FindByIdAsync(newEmployee.UserId);
-            if (currentUser == null) return Challenge();
-            var employee = new Employee
-            {
-                User = employeeUser,
-                EmploymentDate = newEmployee.EmploymentDate,
-                ContractEndDate = newEmployee.ContractEndDate,
-                CreatedDate = DateTimeOffset.Now,
-                AdedBy = currentUser,
-                BaseMonthSalary = newEmployee.BaseMonthSalary,
-                EditedBy = currentUser
-
-            };
-
-            var successful = await _employeeService
-            .AddEmployeeAsync(employee);
-
-            if (!successful)
-            {
-                return BadRequest("Could not add service.");
+                return BadRequest("Could not add employee.");
             }
 
 

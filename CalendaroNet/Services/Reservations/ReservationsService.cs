@@ -7,7 +7,7 @@ using CalendaroNet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace CalendaroNet.Services
+namespace CalendaroNet.Services.Resevations
 {
     public class ReservationService
     {

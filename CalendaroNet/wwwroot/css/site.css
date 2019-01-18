@@ -40,13 +40,13 @@ body {
     max-height: 1080px !important;
 }
 
-.nav a{
+.nav a,button{
     margin-top: 4px;
-    /* color: rgb(1, 30, 49) !important;
-    font-size: 1.2em !important; */
+     color: rgb(212, 212, 212) !important;
+    font-size: 1.2em !important; 
     }
 .nav button{
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 .lightercolor{

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CalendaroNet.Models;
 using CalendaroNet.Services;
+using CalendaroNet.Services.TodoItems;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,11 @@ namespace CalendaroNet.Controllers
     public class TodoController : Controller
     {
 
-        private readonly ITodoItemService _todoItemService;
+        private readonly ITodoItemsService _todoItemService;
         private readonly UserManager<ApplicationUser> _userManager;
 
 
-        public TodoController(ITodoItemService todoItemService, UserManager<ApplicationUser> userManager)
+        public TodoController(ITodoItemsService todoItemService, UserManager<ApplicationUser> userManager)
         {
             _todoItemService = todoItemService;
             _userManager = userManager;
