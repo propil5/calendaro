@@ -1,0 +1,44 @@
+@model AddEmployeeViewModel
+@using CalendaroNet.Models.Employee
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div>
+    <div>
+        <form  asp-action="EditEmployee" method="PUT">
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+            <label asp-for="UserId"></label>
+            @Html.DropDownListFor(x => x.UserId, new SelectList(Model.Users, "Id", "UserName"), new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="EmploymentDate"></label>
+                <input asp-for="EmploymentDate" class="form-control" />
+                <span asp-validation-for="EmploymentDate" class="text-danger">
+
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractEndDate"></label>
+                <input asp-for="ContractEndDate" class="form-control" />
+                <span asp-validation-for="ContractEndDate" class="text-danger">
+
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BaseMonthSalary"></label>
+                <input asp-for="BaseMonthSalary" class="form-control" />
+                <span asp-validation-for="BaseMonthSalary" class="text-danger">
+                </span>
+            </div>
+            <button type="submit" class="btn btn-default">Update</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -12,8 +12,11 @@ namespace CalendaroNet.Models.Service
 
         public string Description { get; set; }
 
-        public TimeSpan TimeRequired { get; set; }
+        public int TimeRequiredInMinutes { get; set; }
 
         public bool RoleReqired {get; set;}
+
+        public double PriceInPln {get; set;}
+
     }
 }

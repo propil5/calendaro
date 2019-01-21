@@ -4,44 +4,55 @@
 @{
     ViewData["Title"] = "Manage your employees";
 }
+    <form asp-controller="Employee" asp-action="AddEmployee" method="GET">
+        <button type="submit" class="btn btn-sm btn-success d-none d-md-inline-block">
+            Add
+        </button>
+    </form>
 
-  <button type="button" class="btn btn-primary btn-lg">
-                <a asp-controller="Employee" 
-                   asp-action="AddEmployee">
-                   Dodaj
-                </a></button>
-  <button type="button" class="btn btn-danger btn-lg" asp-controller="Service" 
-   asp-action="Index">Usuń</button>
+    <div class="panel panel-default service-panel">
+    <div class="panel-heading">@ViewData["Title"]</div>
 
-<div class="panel panel-default service-panel">
-  <div class="panel-heading">@ViewData["Title"]</div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Employment Date</td>
+                <td>Contract End Date</td>
+                <td>Salary</td>
+                <td>AdedBy</td>
+                <td>EditedBy</td>
+                <td>Opcje</td>
 
-  <table class="table table-hover">
-      <thead>
-          <tr>
-              <td>Name</td>
-              <td>Employment Date</td>
-              <td>Contract End Date</td>
-              <td>Salary</td>
-              <td>AdedBy</td>
-              <td>EditedBy</td>
+            </tr>
+        </thead>
 
-          </tr>
-      </thead>
+        @foreach (var employee in Model.Employees)
+        {
+            <tr>
 
-      @foreach (var employee in Model.Employees)
-      {
-          <tr>
+                <td>@employee.Name</td>
+                <td>@employee.EmploymentDate</td>
+                <td>@employee.EmploymentDate</td>
+                <td>@employee.ContractEndDate</td>
+                <td>@employee.BaseMonthSalary</td>
+                <td>@employee.AdedBy</td>
+                <td>@employee.EditedBy</td>
+                <td>
+                    <form asp-controller="Employee"asp-action="DeleteEmployee" asp-route-id="@employee.Id">
+                        <button type="submit" class="btn btn-sm btn-danger d-none">
+                            Delete
+                        </button>
+                    </form>
+                    <form asp-controller="Employee"asp-action="EditEmployee" method="Get" asp-route-id="@employee.Id">
+                        <button type="submit" class="btn btn-sm btn-warning d-none">
+                            Edit
+                        </button>
+                    </form>
+                </td>
+                
+            </tr>
+        }
+    </table>
 
-              <td>@employee.Name</td>
-              <td>@employee.EmploymentDate</td>
-              <td>@employee.EmploymentDate</td>
-              <td>@employee.ContractEndDate</td>
-              <td>@employee.BaseMonthSalary</td>
-              <td>@employee.AdedBy</td>
-              <td>@employee.EditedBy</td>
-          </tr>
-      }
-  </table>
-
-</div>
+    </div>

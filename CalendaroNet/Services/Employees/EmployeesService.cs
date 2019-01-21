@@ -22,6 +22,19 @@ namespace CalendaroNet.Services.Employees
         }
         #endregion
 
+        
+        #region GetEmployeeById()
+        public async Task<Employee> GetEmployeeAsync(Guid id)
+        {
+            var employee = await _context.Employees
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
+
+            return employee;
+
+        }
+        #endregion
+
         #region AddEmployeeService()
         public async Task<bool> AddEmployeeAsync(Employee employee)
         {
@@ -55,18 +68,23 @@ namespace CalendaroNet.Services.Employees
         #endregion
 
         #region UpdateEmployeeAsync()
-        public async Task<bool> UpdateEmployeeAsync(Guid id, Employee changedEmployee)
+        public async Task<bool> UpdateEmployeeAsync(Guid id, AddEmployeeViewModel changedEmployee)
         {
             var employee = await _context.Employees
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
 
+            var user = await _userManager.FindByIdAsync(changedEmployee.UserId);
+            var editedBy = await _userManager.FindByIdAsync(changedEmployee.EditedBy);
+
             if (employee != null)
             { 
-                employee.User = changedEmployee.User;
+                employee.User = user;
                 employee.EmploymentDate = changedEmployee.EmploymentDate;
                 employee.ContractEndDate = changedEmployee.ContractEndDate;
                 employee.BaseMonthSalary = changedEmployee.BaseMonthSalary;
+                employee.UpdateDate = changedEmployee.UpdateDate;
+                employee.EditedBy = editedBy;
                 _context.Update(employee);
                 
             } 
@@ -93,6 +111,7 @@ namespace CalendaroNet.Services.Employees
                 var userName = await _userManager.FindByIdAsync(employee.UserId);
                 employeesViewList.Add(new EmployeeViewModel()
                 {
+                    Id = employee.Id,
                     Name = "addedBy.Name",
                     EmploymentDate = employee.EmploymentDate,
                     ContractEndDate = employee.ContractEndDate,

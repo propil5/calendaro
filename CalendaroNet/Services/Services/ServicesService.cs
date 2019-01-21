@@ -5,7 +5,7 @@ using CalendaroNet.Data;
 using CalendaroNet.Models.Service;
 using Microsoft.EntityFrameworkCore;
 
-namespace CalendaroNet.Services
+namespace CalendaroNet.Services.Services
 {
     public class ServiceService : IServiceService
     {
@@ -20,11 +20,19 @@ namespace CalendaroNet.Services
         #endregion
 
         #region AddServiceAsync()
-        public async Task<bool> AddServiceAsync(Service newService)
+        public async Task<bool> AddServiceAsync(ServiceViewModel newService)
         {
-            newService.Id = Guid.NewGuid();
 
-            _context.Services.Add(newService);
+            var service = new Service{
+                Id = Guid.NewGuid(),
+                Name = newService.Name,
+                TimeRequiredInMinutes = newService.TimeRequiredInMinutes,
+                Description = newService.Description,
+                RoleReqired = newService.RoleReqired,
+                PriceInPln = newService.PriceInPln
+            };
+        
+            _context.Services.Add(service);
 
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
@@ -65,7 +73,7 @@ namespace CalendaroNet.Services
             { 
                 service.Name = changedService.Name;
                 service.RoleReqired = changedService.RoleReqired;
-                service.TimeRequired = changedService.TimeRequired;
+                service.TimeRequiredInMinutes = changedService.TimeRequiredInMinutes;
                 service.Description = changedService.Description;
                 _context.Update(service);
                 

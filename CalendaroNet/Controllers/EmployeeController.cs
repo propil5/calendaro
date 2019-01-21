@@ -39,14 +39,17 @@ namespace CalendaroNet.Controllers
 
             return View(model); 
         }
+
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> AddEmployee(string returnUrl = null)
         {
             var users = await _userManager.Users
             .ToArrayAsync();
             var model = new AddEmployeeViewModel
             {
-                Users = users
+                Users = users,
+                EmploymentDate = DateTimeOffset.Now
             };
             return View(model);
             
@@ -56,7 +59,7 @@ namespace CalendaroNet.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Huj");
+                return RedirectToAction("Index");
             }
             var currentUser = await _userManager.GetUserAsync(User);
             var employeeUser = await _userManager.FindByIdAsync(newEmployee.UserId);
@@ -87,7 +90,7 @@ namespace CalendaroNet.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveEmployee(Guid id)
+        public async Task<IActionResult> DeleteEmployee(Guid id)
         {
             if (id == Guid.Empty)
             {
@@ -97,8 +100,58 @@ namespace CalendaroNet.Controllers
             var successful = await _employeeService.DeleteEmployeeAsync(id);
             if (!successful)
             {
-                return BadRequest("Could not delete service.");
+                return BadRequest("Could not delete employee.");
             }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        public async Task<IActionResult> EditEmployee(Guid id)
+        {
+            var employee = await _employeeService.GetEmployeeAsync(id);
+            var users = await _userManager.Users.ToArrayAsync();
+            var user = await _userManager.FindByIdAsync(employee.UserId);
+            var model = new AddEmployeeViewModel()
+            {
+                Name = "user.Name",
+                Users = users,
+                EmploymentDate = employee.EmploymentDate,
+                ContractEndDate = employee.ContractEndDate,
+                BaseMonthSalary = employee.BaseMonthSalary
+            };
+            return View(model);
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditEmployee(Guid id, AddEmployeeViewModel employee)
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            var employeeUser = await _userManager.FindByIdAsync(employee.UserId);
+            var originEmployee = await _employeeService.GetEmployeeAsync(id);
+            if (currentUser == null) return Challenge();
+            var updatedEmployee = new AddEmployeeViewModel
+            {
+                UserId = employee.UserId,
+                
+                EmploymentDate = employee.EmploymentDate,
+                ContractEndDate = employee.ContractEndDate,
+                BaseMonthSalary = employee.BaseMonthSalary,
+                UpdateDate = DateTimeOffset.Now,
+                EditedBy = currentUser.Id
+            };
+
+            var successful = await _employeeService
+            .UpdateEmployeeAsync(id, updatedEmployee);
+
+            if (!successful)
+            {
+                return BadRequest("Could not update employee.");
+            }
+
 
             return RedirectToAction("Index");
         }

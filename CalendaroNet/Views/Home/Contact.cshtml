@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ContactFormModel
+@{
     ViewData["Title"] = "Kontakt";
 }
 <h2>@ViewData["Title"]</h2>
@@ -10,18 +11,22 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d82713.22172230785!2d21.72161381720766!3d49.62059791803995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x423b1ec61ba015df!2sPa%C5%84stwowa+Wy%C5%BCsza+Szko%C5%82a+Zawodowa+im.+Stanis%C5%82awa+Pigonia+w+Kro%C5%9Bnie!5e0!3m2!1spl!2spl!4v1546942892057" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
       <div class="col-md-5">
+        <form  asp-action="Contact" method="POST"></form>
         <h2 class="text-uppercase mt-3 font-weight-bold text-white">Formularz kontaktowy</h2>
-        <form action="">
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group">
-                <input type="text" class="form-control mt-2" placeholder="Name" required>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control mt-2" />
+                <span asp-validation-for="Name" class="text-danger"></span>
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="form-group">
-                <input type="text" class="form-control mt-2" placeholder="Surname" required>
-              </div>
+              < <div class="form-group">
+                <label asp-for="ContractEndDate"></label>
+                <input asp-for="ContractEndDate" class="form-control mt-2" />
+                <span asp-validation-for="ContractEndDate" class="text-danger"></span>
+            </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">

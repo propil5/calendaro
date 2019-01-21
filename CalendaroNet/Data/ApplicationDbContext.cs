@@ -16,8 +16,7 @@ namespace CalendaroNet.Data
         {
         }
         public DbSet<TodoItem> Items { get; set; }
-        public DbSet<Service> Services { get; set; }
-        
+        public DbSet<Service> Services { get; set; }       
         public DbSet<Employee> Employees { get; set; }
 
     }

@@ -11,11 +11,17 @@ namespace CalendaroNet.Models.Employee
         [Display(Name = "User")]
         public String UserId { get; set; }
 
+        public String Name {get; set;}
+
         public ApplicationUser[] Users {get; set;}
 
         public DateTimeOffset EmploymentDate { get; set; }
 
         public DateTimeOffset? ContractEndDate { get; set; }
+
+        public DateTimeOffset? UpdateDate { get; set; }
+
+        public String EditedBy { get; set; }
 
         [Range(0, 99999.99)]
         public double BaseMonthSalary { get; set; }

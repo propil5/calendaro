@@ -16,6 +16,7 @@ using CalendaroNet.Services;
 using MySql.Data;
 using CalendaroNet.Services.Employees;
 using CalendaroNet.Services.TodoItems;
+using CalendaroNet.Services.Services;
 
 namespace CalendaroNet
 {
@@ -54,14 +55,14 @@ namespace CalendaroNet
             .AddDefaultUI() 
             .AddDefaultTokenProviders();
 
-
-            services.AddAuthentication();
-            //Add app services
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<ITodoItemsService, TodoItemsService>();
             services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<IServiceService, ServiceService>();
+
+            services.AddAuthentication();
+            //Add app services
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

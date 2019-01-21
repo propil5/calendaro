@@ -9,8 +9,9 @@ namespace CalendaroNet.Services.Employees
     public interface IEmployeesService
     {
         Task<List<EmployeeViewModel>> GetListOfAllEmployeesAsync();
+        Task<Employee> GetEmployeeAsync(Guid Id);
         Task<bool> AddEmployeeAsync(Employee employee);
         Task<bool> DeleteEmployeeAsync(Guid id);
-        Task<bool> UpdateEmployeeAsync(Guid id, Employee changedEmployee);
+        Task<bool> UpdateEmployeeAsync(Guid id, AddEmployeeViewModel changedEmployee);
     }
 }

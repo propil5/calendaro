@@ -6,6 +6,7 @@ namespace CalendaroNet.Models.Employee
     public class EmployeeViewModel
     {
 
+        public Guid Id{get; set;}       
         public String Name { get; set; }
 
         public DateTimeOffset EmploymentDate { get; set; }
