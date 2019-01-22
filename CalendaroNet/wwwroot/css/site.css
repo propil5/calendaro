@@ -53,3 +53,12 @@ body {
 
         color: rgb(155, 44, 44) !important;
 }
+
+#navdropdown{
+    margin-top: 2px;
+    padding: 15px;
+}
+
+.info{
+    margin-top: 20px;
+}

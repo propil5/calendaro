@@ -55,7 +55,7 @@ namespace CalendaroNet
             .AddDefaultUI() 
             .AddDefaultTokenProviders();
 
-            //services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<ITodoItemsService, TodoItemsService>();
             services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<IServiceService, ServiceService>();

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CalendaroNet.Models.Schedule
 {
-    public class EmployeShedule
+    public class EmployeeSchedule
     {
         public Guid Id { get; set; }
         
