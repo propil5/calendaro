@@ -7,9 +7,9 @@ namespace CalendaroNet.Models.Employee
     {
         public Guid Id { get; set; }
         
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
-        public String UserId { get; set; }
+        public string UserId { get; set; }
 
         public DateTimeOffset EmploymentDate { get; set; }
 

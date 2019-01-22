@@ -1,152 +1,160 @@
-// using System;
-// using System.Threading.Tasks;
-// using CalendaroNet.Data;
-// using CalendaroNet.Models;
-// using System.Linq;
-// using Microsoft.EntityFrameworkCore;
-// using CalendaroNet.Models.Employee;
-// using System.Collections.Generic;
-// using Microsoft.AspNetCore.Identity;
-// using CalendaroNet.Models.Schedule;
+using System;
+using System.Threading.Tasks;
+using CalendaroNet.Data;
+using CalendaroNet.Models;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using CalendaroNet.Models.Employee;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using CalendaroNet.Models.Schedule;
 
-// namespace CalendaroNet.Services.Schedules
-// {
-//     public class SchedulesService : ISchedulesService
-//     {
-//         private readonly ApplicationDbContext _context;
-//         private readonly UserManager<ApplicationUser>  _userManager;
+namespace CalendaroNet.Services.Schedules
+{
+    public class SchedulesService : ISchedulesService
+    {
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser>  _userManager;
 
-//         #region EmployeeService()
-//         public SchedulesService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
-//         {
-//             _context = context;
-//             _userManager = userManager;
-//         }
-//         #endregion
+        #region EmployeeService()
+        public SchedulesService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
+        #endregion
 
-//         #region GetEmployeeById()
-//         public async Task<Employee> GetScheduleAsync(Guid id)
-//         {
-//             var schedule = await _context.Schedule
-//                 .Where(x => x.Id == id)
-//                 .SingleOrDefaultAsync();
+        #region GetEmployeeById()
+        public async Task<EmployeeSchedule> GetScheduleAsync(int id)
+        {
+            var schedule = await _context.EmployeesSchedule.FindAsync(id);
 
-//             return employee;
+            return schedule;
 
-//         }
-//         #endregion
+        }
+        #endregion
 
-//         #region AddEmployeeService()
-//         public async Task<bool> AddScheduleDayAsync(Employee employee)
-//         {
-//             employee.Id = Guid.NewGuid();
-//             _context.Employees.Add(employee);
-//             var saveResult = await _context.SaveChangesAsync();
-//             return saveResult == 1;
-//         }
-//         #endregion
+        #region AddEmployeeService()
+        public async Task<bool> AddScheduleDayAsync(EmployeeSchedule schedule)
+        {
+            schedule.Id = Guid.NewGuid();
+            _context.EmployeesSchedule.Add(schedule);
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
+        #endregion
 
-//         #region DeleteEmployeeService()
-//         public async Task<bool> DeleteEmployeeAsync(Guid id)
-//         {
-//             var deleted = false;
-//             var employee = await _context.Employees
-//                 .Where(x => x.Id == id)
-//                 .SingleOrDefaultAsync();
+        #region DeleteEmployeeService()
+        public async Task<bool> DeleteEmployeeAsync(Guid id)
+        {
+            var deleted = false;
+            var employee = await _context.EmployeesSchedule
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
 
-//             if (employee != null)
-//             { 
-//                 _context.Remove(employee);
-//                 deleted = true;
-//             } else
-//             {
-//                 deleted = false;
-//             }
+            if (employee != null)
+            { 
+                _context.Remove(employee);
+                deleted = true;
+            } else
+            {
+                deleted = false;
+            }
         
-//             var saveResult = await _context.SaveChangesAsync();
-//             return saveResult == 1 && deleted == true;
-//         }
-//         #endregion
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1 && deleted == true;
+        }
+        #endregion
 
-//         #region UpdateEmployeeAsync()
-//         public async Task<bool> UpdateEmployeeAsync(Guid id, Employee changedEmployee)
-//         {
-//             var employee = await _context.Employees
-//                 .Where(x => x.Id == id)
-//                 .SingleOrDefaultAsync();
+        #region UpdateEmployeeAsync()
+        public async Task<bool> UpdateEmployeeAsync(Guid id, EmployeeSchedule changedSchedule)
+        {
+            var schedule = await _context.EmployeesSchedule
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
 
-//             if (employee != null)
-//             { 
-//                 employee.User = changedEmployee.User;
-//                 employee.EmploymentDate = changedEmployee.EmploymentDate;
-//                 employee.ContractEndDate = changedEmployee.ContractEndDate;
-//                 employee.BaseMonthSalary = changedEmployee.BaseMonthSalary;
-//                 _context.Update(employee);
+            if (schedule != null)
+            { 
+                schedule.EmployeeId = changedSchedule.EmployeeId;
+                schedule.StartTime = changedSchedule.StartTime;
+                schedule.FinishTime = changedSchedule.FinishTime;
+                schedule.Role = changedSchedule.Role;
+                _context.Update(schedule);
                 
-//             } 
+            } 
         
-//             var saveResult = await _context.SaveChangesAsync();
-//             return saveResult == 1;
-//         }
-//         #endregion
-
-//         #region GetListOfAllEmployeesAsync()
-//         public async Task<List<EmployeeViewModel>> GetListOfAllEmployeesAsync()
-//         {
-//             var employeesList = await _context.Employees
-//                 .ToArrayAsync();
-//             List<EmployeeViewModel> employeesViewList = new List<EmployeeViewModel>(); 
-            
-//             foreach(var employee in employeesList)
-//             {
-//                 // String aad = employee.AdedBy.ToString();
-//                 // String eed = employee.EditedBy.ToString();
-//                 // String nam = employee.User.ToString();
-//                 var addedBy = await _userManager.FindByIdAsync(employee.AdedById);
-//                 var editedBy = await _userManager.FindByIdAsync(employee.EditedById);
-//                 var userName = await _userManager.FindByIdAsync(employee.UserId);
-//                 employeesViewList.Add(new EmployeeViewModel()
-//                 {
-//                     Name = "addedBy.Name",
-//                     EmploymentDate = employee.EmploymentDate,
-//                     ContractEndDate = employee.ContractEndDate,
-//                     CreatedDate = employee.CreatedDate,
-//                     UpdateDate = employee.UpdateDate,
-//                     AdedBy = "userName.Name",
-//                     EditedBy = "userName.Name",
-//                     BaseMonthSalary = employee.BaseMonthSalary,
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
+        #endregion
 
 
-//                 });
-//             }
-            
-//             return employeesViewList;
-//         }
+        #region MarkAsPresent()
 
-//         public Task<List<WorkScheduleView>> GetScheduleForMe(string id)
-//         {
-//             throw new NotImplementedException();
-//         }
+        public async Task<bool> MarkAsPresent(Guid id)
+        {
+             var schedule = await _context.EmployeesSchedule
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
+            schedule.Present = true;
+            _context.Update(schedule);
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
 
-//         public Task<List<WorkScheduleView>> GetScheduleForAll(string id)
-//         {
-//             throw new NotImplementedException();
-//         }
+        }
+        #endregion
 
-//         public Task<bool> AddScheduleDayAsync(EmployeShedule schedule)
-//         {
-//             throw new NotImplementedException();
-//         }
+        #region AddAbsenceReason()
 
-//         public Task<bool> DeleteScheduleDayAsync(Guid id)
-//         {
-//             throw new NotImplementedException();
-//         }
+        public async Task<bool> AddAbsenceReason(Guid id, string reasonMessage)
+        {
+                var schedule = await _context.EmployeesSchedule
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
+            schedule.Present = true;
+            schedule.AbsenceReason = reasonMessage;
+            _context.Update(schedule);
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
 
-//         public Task<bool> UpdateScheduleDaysync(Guid id, EmployeShedule schedule)
-//         {
-//             throw new NotImplementedException();
-//         }
-//         #endregion
-//     }
-// }
+        #region GetScheduleListForEmployeeAsync()
+        public async Task<EmployeeSchedule[]> GetScheduleListForEmployeeAsync(Guid employeeId)
+        {
+            var scheduleList = await _context.EmployeesSchedule
+                .Where(x => x.Present!= true && x.StartTime >= DateTimeOffset.Now && x.EmployeeId == employeeId)
+                .ToArrayAsync();
+
+            return scheduleList;
+        }
+        #endregion
+
+        #region GetScheduleListForEmployeeFromDateAsync()
+        public async Task<EmployeeSchedule[]> GetScheduleListFromDateAsync(Guid employeeId, DateTimeOffset startSchedule)
+        {
+            var scheduleList = await _context.EmployeesSchedule
+                .Where(x => x.Present!= true && x.StartTime >= startSchedule && x.EmployeeId == employeeId)
+                .ToArrayAsync();
+
+            return scheduleList;
+        }
+        #endregion
+
+
+        public Task<bool> DeleteScheduleDayAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateScheduleDaysync(Guid id, EmployeeSchedule schedule)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EmployeeSchedule[]> GetScheduleListForEmployeeAsync(int employeeId)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+}

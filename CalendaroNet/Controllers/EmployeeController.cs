@@ -112,7 +112,7 @@ namespace CalendaroNet.Controllers
         {
             var employee = await _employeeService.GetEmployeeAsync(id);
             var users = await _userManager.Users.ToArrayAsync();
-            var user = await _userManager.FindByIdAsync(employee.UserId);
+            //var user = await _userManager.FindByIdAsync(employee.UserId);
             var model = new AddEmployeeViewModel()
             {
                 Name = "user.Name",

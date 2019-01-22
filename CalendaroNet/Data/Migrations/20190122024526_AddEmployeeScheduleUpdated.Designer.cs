@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalendaroNet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190122000606_AddEmployeeSchedule")]
-    partial class AddEmployeeSchedule
+    [Migration("20190122024526_AddEmployeeScheduleUpdated")]
+    partial class AddEmployeeScheduleUpdated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,7 +112,7 @@ namespace CalendaroNet.Data.Migrations
 
                     b.Property<string>("AbsenceReason");
 
-                    b.Property<Guid>("EmployeId");
+                    b.Property<Guid>("EmployeeId");
 
                     b.Property<DateTimeOffset>("FinishTime");
 

@@ -35,6 +35,18 @@ namespace CalendaroNet.Services.Employees
         }
         #endregion
 
+        #region GetEmployeeById()
+        public async Task<Guid> GetEmployeeIdByUserIdAsync(string id)
+        {
+            var employee = await _context.Employees
+                .Where(x => x.UserId == id)
+                .SingleOrDefaultAsync();
+
+            return employee.Id;
+
+        }
+        #endregion
+
         #region AddEmployeeService()
         public async Task<bool> AddEmployeeAsync(Employee employee)
         {
@@ -108,7 +120,7 @@ namespace CalendaroNet.Services.Employees
                 // String nam = employee.User.ToString();
                 var addedBy = await _userManager.FindByIdAsync(employee.AdedById);
                 var editedBy = await _userManager.FindByIdAsync(employee.EditedById);
-                var userName = await _userManager.FindByIdAsync(employee.UserId);
+                //var userName = await _userManager.FindByIdAsync(employee.UserId);
                 employeesViewList.Add(new EmployeeViewModel()
                 {
                     Id = employee.Id,

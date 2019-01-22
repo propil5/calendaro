@@ -1,0 +1,55 @@
+@model ScheduleListViewModel
+@using CalendaroNet.Models.Schedule
+
+@{
+    ViewData["Title"] = "Zarządzaj grafikiem";
+}
+    
+  <form asp-controller="Schedule" asp-action="Add" method="GET">
+                    <button type="submit" class="btn btn-sm btn-success d-none d-md-inline-block">
+                        Dodaj harmonogram
+                    </button>
+    </form>
+    <br>
+    <h3>Twój grafik</h3>
+<div class="panel panel-default service-panel">
+  <div class="panel-heading">@ViewData["Title"]</div>
+
+  <table class="table table-hover">
+      <thead>
+          <tr>
+              <td>Od</td>
+              <td>Do</td>
+              <td>Rola</td>
+              <td>Obecny</td>
+          </tr>
+      </thead>
+
+      @foreach (var item in Model.Schedule)
+      {
+          <tr>
+
+              <td>@item.StartTime</td>
+              <td>@item.FinishTime</td>
+              <td>@item.Role</td>
+              <td>@item.Present</td>
+              <td>
+                  <div class="in-line">
+                <form asp-controller="Schedule"asp-action="Delete" asp-route-id="@item.Id">
+                    <button type="submit" class="btn btn-sm btn-danger ">
+                        Usuń
+                    </button>
+                </form>
+                <form asp-controller="Schedule"asp-action="Edit" method="Get" asp-route-id="@item.Id">
+                    <button type="submit" class="btn btn-sm btn-warning">
+                        Edytuj
+                    </button>
+                </form>
+                </div>
+            </td>
+
+          </tr>
+      }
+  </table>
+
+</div>

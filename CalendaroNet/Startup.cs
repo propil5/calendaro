@@ -17,6 +17,7 @@ using MySql.Data;
 using CalendaroNet.Services.Employees;
 using CalendaroNet.Services.TodoItems;
 using CalendaroNet.Services.Services;
+using CalendaroNet.Services.Schedules;
 
 namespace CalendaroNet
 {
@@ -57,6 +58,7 @@ namespace CalendaroNet
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<ITodoItemsService, TodoItemsService>();
+            services.AddScoped<ISchedulesService, SchedulesService>();
             services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<IServiceService, ServiceService>();
 

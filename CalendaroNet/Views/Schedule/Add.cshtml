@@ -1,0 +1,39 @@
+@model WorkScheduleView
+@using CalendaroNet.Models.Schedule
+@{
+    ViewData["Title"] = "Dodaj harmonogram";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div>
+    <div>
+        <form  asp-action="Add" method="POST">
+            <h4>Add new serivce.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+             <div class="form-group">
+            <label asp-for="EmployeeId"></label>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartTime"></label>
+                <input asp-for="StartTime" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinishTime"></label>
+                <input asp-for="FinishTime" class="form-control" />
+                <span asp-validation-for="FinishTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role"></label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

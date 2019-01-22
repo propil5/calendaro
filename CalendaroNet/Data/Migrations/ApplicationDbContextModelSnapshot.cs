@@ -110,7 +110,7 @@ namespace CalendaroNet.Data.Migrations
 
                     b.Property<string>("AbsenceReason");
 
-                    b.Property<Guid>("EmployeId");
+                    b.Property<Guid>("EmployeeId");
 
                     b.Property<DateTimeOffset>("FinishTime");
 
