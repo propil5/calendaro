@@ -46,11 +46,12 @@ namespace CalendaroNet
             //             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection1")));
             // else
             services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseMySql(Configuration.GetConnectionString("LocalConnection")));
+            options.UseMySql(Configuration.GetConnectionString("LocalConnection")));//Zmienić DefaultConnection1 i useSQLServer podczas wdrożania na SQL
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection1")));//Zmienić DefaultConnection1 i useSQLServer podczas wdrożania na SQL
 
             // Automatically perform database migration
             //services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
-            
+
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI() 
