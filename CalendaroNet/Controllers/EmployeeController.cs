@@ -34,7 +34,7 @@ namespace CalendaroNet.Controllers
 
             var model = new EmployeesListViewModel()
             {
-                Employees = employees
+                CompanyEmployees = employees
             };
 
             return View(model); 
@@ -62,11 +62,14 @@ namespace CalendaroNet.Controllers
                 return RedirectToAction("Index");
             }
             var currentUser = await _userManager.GetUserAsync(User);
-            var employeeUser = await _userManager.FindByIdAsync(newEmployee.UserId);
+            var employedUser = await _userManager.FindByIdAsync(newEmployee.UserId);
             if (currentUser == null) return Challenge();
             var employee = new Employee
             {
-                User = employeeUser,
+                FirstName = newEmployee.FirstName,
+                Surname = newEmployee.Surname,
+                SecondName = newEmployee.SecondName,
+                User = employedUser,
                 EmploymentDate = newEmployee.EmploymentDate,
                 ContractEndDate = newEmployee.ContractEndDate,
                 CreatedDate = DateTimeOffset.Now,
@@ -115,7 +118,9 @@ namespace CalendaroNet.Controllers
             //var user = await _userManager.FindByIdAsync(employee.UserId);
             var model = new AddEmployeeViewModel()
             {
-                Name = "user.Name",
+                FirstName = employee.FirstName,
+                Surname = employee.Surname,
+                SecondName = employee.Surname,
                 Users = users,
                 EmploymentDate = employee.EmploymentDate,
                 ContractEndDate = employee.ContractEndDate,
@@ -136,7 +141,9 @@ namespace CalendaroNet.Controllers
             var updatedEmployee = new AddEmployeeViewModel
             {
                 UserId = employee.UserId,
-                
+                FirstName = employee.FirstName,
+                Surname = employee.Surname,
+                SecondName = employee.Surname,          
                 EmploymentDate = employee.EmploymentDate,
                 ContractEndDate = employee.ContractEndDate,
                 BaseMonthSalary = employee.BaseMonthSalary,

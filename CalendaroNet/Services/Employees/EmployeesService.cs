@@ -12,7 +12,7 @@ namespace CalendaroNet.Services.Employees
     public class EmployeesService : IEmployeesService
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser>  _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         #region EmployeeService()
         public EmployeesService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
@@ -22,7 +22,7 @@ namespace CalendaroNet.Services.Employees
         }
         #endregion
 
-        
+
         #region GetEmployeeById()
         public async Task<Employee> GetEmployeeAsync(Guid id)
         {
@@ -66,14 +66,15 @@ namespace CalendaroNet.Services.Employees
                 .SingleOrDefaultAsync();
 
             if (employee != null)
-            { 
+            {
                 _context.Remove(employee);
                 deleted = true;
-            } else
+            }
+            else
             {
                 deleted = false;
             }
-        
+
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1 && deleted == true;
         }
@@ -90,7 +91,7 @@ namespace CalendaroNet.Services.Employees
             var editedBy = await _userManager.FindByIdAsync(changedEmployee.EditedBy);
 
             if (employee != null)
-            { 
+            {
                 employee.User = user;
                 employee.EmploymentDate = changedEmployee.EmploymentDate;
                 employee.ContractEndDate = changedEmployee.ContractEndDate;
@@ -98,9 +99,9 @@ namespace CalendaroNet.Services.Employees
                 employee.UpdateDate = changedEmployee.UpdateDate;
                 employee.EditedBy = editedBy;
                 _context.Update(employee);
-                
-            } 
-        
+
+            }
+
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
@@ -111,20 +112,23 @@ namespace CalendaroNet.Services.Employees
         {
             var employeesList = await _context.Employees
                 .ToArrayAsync();
-            List<EmployeeViewModel> employeesViewList = new List<EmployeeViewModel>(); 
-            
-            foreach(var employee in employeesList)
+            List<EmployeeViewModel> employeesViewList = new List<EmployeeViewModel>();
+
+            foreach (var employee in employeesList)
             {
                 // String aad = employee.AdedBy.ToString();
                 // String eed = employee.EditedBy.ToString();
                 // String nam = employee.User.ToString();
+                //var editedById = await _userManager.Users.Include(x => x.Name).FirstOrDefault(x => x.Id == (employee.Id));
                 var addedBy = await _userManager.FindByIdAsync(employee.AdedById);
                 var editedBy = await _userManager.FindByIdAsync(employee.EditedById);
                 //var userName = await _userManager.FindByIdAsync(employee.UserId);
                 employeesViewList.Add(new EmployeeViewModel()
                 {
                     Id = employee.Id,
-                    Name = "addedBy.Name",
+                    FirstName = employee.FirstName,
+                    Surname = employee.Surname,
+                    SecondName = employee.SecondName,
                     EmploymentDate = employee.EmploymentDate,
                     ContractEndDate = employee.ContractEndDate,
                     CreatedDate = employee.CreatedDate,
@@ -136,7 +140,7 @@ namespace CalendaroNet.Services.Employees
 
                 });
             }
-            
+
             return employeesViewList;
         }
         #endregion

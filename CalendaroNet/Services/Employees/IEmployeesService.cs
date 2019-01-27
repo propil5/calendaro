@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CalendaroNet.Models.Employee;
+using CalendaroNet.Models.Employees;
 using Microsoft.AspNetCore.Identity;
 
 namespace CalendaroNet.Services.Employees
