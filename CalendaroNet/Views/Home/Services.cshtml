@@ -1,0 +1,51 @@
+@model ServiceListViewModel
+@using CalendaroNet.Models.Service
+
+@{
+    ViewData["Title"] = "Nasza oferta:";
+}
+
+<div class="jumbotron" style="padding-top:10px;">
+    <div class="float-top float-left margin-top: 0px;">
+            <img class="featurette-image img-fluid mx-auto" src="~/images/doctorbanner.jpg" width="1000" height="400"  alt="Grupa">
+    </div>
+    <div class=md></div>
+    <div class="" style="float right">
+        <h1 class="display-4">Witaj w naszych usługach!</h1>
+    <p class="lead">Zapraszamy do zapoznania się z naszymi usługami. Codziennie dokłądamy wszelkichstarań byś czuł się u nas jak najlepiej. Koniecznie zapoznaj się z naszmy systemem rezerwacji online.</p>
+    <hr class="my-4">
+    <p>Znajdziesz się w najlepszych możliwych rękach!</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Zarezerwuj termin już dzisiaj!</a>
+    </p>
+    <div class="panel panel-default service-panel" style="">
+
+
+  </div>
+  <div class="panel-heading"><h2> @ViewData["Title"]</h2></div>
+
+  <table class="table table-sm table-bordered table-dark">
+      <thead>
+          <tr>
+              <td>Nazwa usługi</td>
+              <td>Czas usługi</td>
+              <td>Opis</td>
+              <td>Cena</td>
+          </tr>
+      </thead>
+
+      @foreach (var item in Model.Services)
+      {
+          <tr>
+
+              <td>@item.Name</td>
+              <td>@item.TimeRequiredInMinutes</td>
+              <td>@item.Description</td>
+              <td>@item.PriceInPln,zł</td>
+
+          </tr>
+      }
+  </table>
+
+</div>
+</div>
