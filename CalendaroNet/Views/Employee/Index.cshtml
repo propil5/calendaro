@@ -1,12 +1,14 @@
 @model EmployeesListViewModel
-@using CalendaroNet.Models.Employee
+@using CalendaroNet.Models.Employees
+@using Humanizer
+
 
 @{
-    ViewData["Title"] = "Manage your employees";
+    ViewData["Title"] = "Zarządzaj użytkownikami";
 }
     <form asp-controller="Employee" asp-action="AddEmployee" method="GET">
-        <button type="submit" class="btn btn-sm btn-success d-none d-md-inline-block">
-            Add
+        <button style="margin-top:20px;"type="submit" class="btn btn-sm btn-success d-none d-md-inline-block">
+            Dodaj pracownika
         </button>
     </form>
 

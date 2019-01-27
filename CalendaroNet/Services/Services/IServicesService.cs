@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CalendaroNet.Models;
-using CalendaroNet.Models.Employee;
+using CalendaroNet.Models.Employees;
 using CalendaroNet.Models.Service;
 using Microsoft.AspNetCore.Identity;
 

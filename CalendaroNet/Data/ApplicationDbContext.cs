@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CalendaroNet.Models;
-using CalendaroNet.Models.Employee;
+using CalendaroNet.Models.Employees;
 using CalendaroNet.Models.Schedule;
 using CalendaroNet.Models.Service;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

@@ -1,14 +1,14 @@
 @model AddEmployeeViewModel
-@using CalendaroNet.Models.Employee
+@using CalendaroNet.Models.Employees
 @{
-    ViewData["Title"] = "Add Employee";
+    ViewData["Title"] = "Dodaj użytkownika";
 }
 
 <h2>@ViewData["Title"]</h2>
 <div>
     <div>
         <form  asp-action="AddEmployee" method="POST">
-            <h4>Add new employee.</h4>
+            <h4>Wprowadź opis użytkownika.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">

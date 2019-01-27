@@ -1,13 +1,16 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CalendaroNet.Models.Employee
+namespace CalendaroNet.Models.Employees
 {
     public class EmployeeViewModel
     {
 
         public Guid Id{get; set;}       
-        public String Name { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
+
+        public string Surname { get; set; }
 
         public DateTimeOffset EmploymentDate { get; set; }
 
@@ -16,8 +19,8 @@ namespace CalendaroNet.Models.Employee
         public DateTimeOffset CreatedDate { get; set; }
 
         public DateTimeOffset? UpdateDate { get; set; }
-        public String AdedBy { get; set; }
-        public String EditedBy { get; set; }
+        public string AdedBy { get; set; }
+        public string EditedBy { get; set; }
 
         public double BaseMonthSalary { get; set; }
 

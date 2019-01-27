@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace CalendaroNet.Models.Employee
+namespace CalendaroNet.Models.Employees
 {
     public class AddEmployeeViewModel
     {
@@ -11,7 +11,12 @@ namespace CalendaroNet.Models.Employee
         [Display(Name = "User")]
         public String UserId { get; set; }
 
-        public String Name {get; set;}
+        public string FirstName {get; set;}
+
+        public string SecondName {get; set;}
+
+        public string Surname {get; set;}
+
 
         public ApplicationUser[] Users {get; set;}
 

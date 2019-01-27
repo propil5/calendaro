@@ -4,10 +4,10 @@ using CalendaroNet.Data;
 using CalendaroNet.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using CalendaroNet.Models.Employee;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using CalendaroNet.Models.Schedule;
+using CalendaroNet.Models.Employees;
 
 namespace CalendaroNet.Services.Schedules
 {

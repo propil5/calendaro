@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using CalendaroNet.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using CalendaroNet.Models.Employee;
+using CalendaroNet.Models.Employees;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
