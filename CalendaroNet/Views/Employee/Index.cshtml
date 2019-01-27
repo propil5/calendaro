@@ -18,41 +18,44 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <td>Name</td>
-                <td>Employment Date</td>
-                <td>Contract End Date</td>
-                <td>Salary</td>
-                <td>AdedBy</td>
-                <td>EditedBy</td>
+                <td>Imię</td>
+                <td>Naziwsko</td>
+                <td>Data Zatrudnienia</td>
+                <td>Koniec umowy</td>
+                <td>Pensja</td>
+
                 <td>Opcje</td>
 
             </tr>
         </thead>
 
-        @foreach (var employee in Model.Employees)
+        @foreach (var employee in Model.CompanyEmployees)
         {
             <tr>
 
-                <td>@employee.Name</td>
-                <td>@employee.EmploymentDate</td>
-                <td>@employee.EmploymentDate</td>
-                <td>@employee.ContractEndDate</td>
-                <td>@employee.BaseMonthSalary</td>
-                <td>@employee.AdedBy</td>
-                <td>@employee.EditedBy</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.Surname</td>
+                <td>@employee.EmploymentDate.ToString("dd MMMMMMM yyyy")</td>
+                <td>@employee.ContractEndDate.Value.ToString("dd MMMMMMM yyyy")</td>
+                <td>@employee.BaseMonthSalary zł</td>
                 <td>
-                    <form asp-controller="Employee"asp-action="DeleteEmployee" asp-route-id="@employee.Id">
-                        <button type="submit" class="btn btn-sm btn-danger d-none">
-                            Delete
-                        </button>
-                    </form>
-                    <form asp-controller="Employee"asp-action="EditEmployee" method="Get" asp-route-id="@employee.Id">
-                        <button type="submit" class="btn btn-sm btn-warning d-none">
-                            Edit
-                        </button>
-                    </form>
+                    <div class="row">
+                        <div>
+                            <form asp-controller="Employee"asp-action="DeleteEmployee" asp-route-id="@employee.Id">
+                                <button type="submit" class="btn btn-sm btn-danger d-none">
+                                    Usuń
+                                </button>
+                            </form>
+                        </div>
+                        <div>
+                            <form asp-controller="Employee"asp-action="EditEmployee" method="Get" asp-route-id="@employee.Id">
+                                <button type="submit" class="btn btn-sm btn-warning d-none">
+                                    Edytuj
+                                </button>
+                            </form>
+                        </div>
+                    </div>                   
                 </td>
-                
             </tr>
         }
     </table>

@@ -7,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 <div>
     <div>
-        <form  asp-action="EditEmployee" method="PUT">
+        <form  asp-action="EditEmployee" method="POST">
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -16,14 +16,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="EmploymentDate"></label>
-                <input asp-for="EmploymentDate" class="form-control" />
+                <input type="date" id="date" asp-for="EmploymentDate" class="form-control" />
                 <span asp-validation-for="EmploymentDate" class="text-danger">
 
                 </span>
             </div>
             <div class="form-group">
                 <label asp-for="ContractEndDate"></label>
-                <input asp-for="ContractEndDate" class="form-control" />
+                <input type="date" id="date" asp-for="ContractEndDate" class="form-control" />
                 <span asp-validation-for="ContractEndDate" class="text-danger">
 
                 </span>
