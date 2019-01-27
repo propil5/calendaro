@@ -7,13 +7,26 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/datetimepicker/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        @*<link rel="stylesheet" href="~/lib/jqueryui/jquery-ui.min.css">*@
+        <link rel="stylesheet" href="~/css/all.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        @*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"
+        asp-fallback-href="~/lib/jqueryui/jquery-ui.min.css"
+        asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />*@
+        <link rel="stylesheet" href="~/css/site.min" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"
+            asp-fallback-href="~/lib/fonts/all.css"
+            asp-fallback-test-class="arial" asp-fallback-test-property="arial" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/lib/jqueryui/jquery.datetimepicker.css" />
     </environment>
 </head>
 <body>
@@ -27,17 +40,20 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-left">
-                    <img src="~/images/Logo.png" width="100" height="50" class="d-inline-block align-top" style="margin-top: 4px; margin-bottom: 3px;" alt=""></a>
+                    <img src="~/images/Logo.png" width="100" height="50" class="d-inline-block align-top" style="margin-top: 4px; margin-bottom: 3px;" alt="">
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav lightercolor">
                     <!-- <li><a asp-area="" asp-controller="Todo" asp-action="Index">My todos</a></li> -->
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">O nas</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a></li>
+                    <li><a style="margin-top: 2px" class="navfontandcolor" asp-area="" asp-controller="Home" asp-action="About">O nas</a></li>
+                    <li><a style="margin-top: 2px" class="navfontandcolor" asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a></li>
+                    <li><a style="margin-top: 2px" class="navfontandcolor" asp-area="" asp-controller="Home" asp-action="Services">Usługi</a></li>
                     <!-- <li><a asp-area="" asp-controller="Random" asp-action="Index">Losuj</a></li> -->
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
-                @await Html.PartialAsync("_AdminActionsPartial")
+
+
             </div>
         </div>
     </nav>
@@ -47,15 +63,29 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2018 - CalendaroNet</p>
+        <footer class="page-footer font-small blue pt-4">
+            <p><h3> </h3></p>
+        </footer>
+
+        <footer class="page-footer font-small blue">
+
+            <!-- Copyright -->
+            <div class="footer footer-copyright text-center py-3">
+                <p><h3>&copy; 2019 - BestMedi®</h3></a>
+            </div>
+            <!-- Copyright -->
+
         </footer>
     </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/moment/moment-with-locales.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -70,9 +100,30 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+                asp-fallback-src="~/lib/jqueryui/jquery-ui.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
     @RenderSection("Scripts", required: false)
+    <script type="text/javascript">
+            $(function () {
+                $('#startscheduledatetime').datetimepicker({
+                    locale: 'pl',
+                    //inline: true,
+                    //sideBySide: true,
+                    stepping: 15
+                });
+            });
+            $(function () {
+                $('#finishscheduledatetime').datetimepicker({
+                    locale: 'pl',
+                    stepping: 15
+                });
+            });
+     </script>
 </body>
 </html>

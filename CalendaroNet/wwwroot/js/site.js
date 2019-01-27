@@ -19,3 +19,4 @@ function markCompleted(checkbox) {
     var form = checkbox.closest('form');
     form.submit();
 }
+
