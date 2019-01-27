@@ -34,6 +34,8 @@ namespace CalendaroNet.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<bool>("IsEmployed");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -71,7 +73,7 @@ namespace CalendaroNet.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("CalendaroNet.Models.Employee.Employee", b =>
+            modelBuilder.Entity("CalendaroNet.Models.Employees.Employee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -87,6 +89,12 @@ namespace CalendaroNet.Data.Migrations
                     b.Property<string>("EditedById");
 
                     b.Property<DateTimeOffset>("EmploymentDate");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("SecondName");
+
+                    b.Property<string>("Surname");
 
                     b.Property<DateTimeOffset?>("UpdateDate");
 
@@ -276,7 +284,7 @@ namespace CalendaroNet.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("CalendaroNet.Models.Employee.Employee", b =>
+            modelBuilder.Entity("CalendaroNet.Models.Employees.Employee", b =>
                 {
                     b.HasOne("ApplicationUser", "AdedBy")
                         .WithMany()
