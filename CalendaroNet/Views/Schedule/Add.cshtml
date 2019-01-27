@@ -15,47 +15,62 @@
                 <label asp-for="EmployeeId"></label>
                 @Html.DropDownListFor(x => x.EmployeeId, new SelectList(Model.CompanyEmployees, "Id", "FirstName"), new { @class = "form-control" })
             </div>
-                <div class="form-group">
-                    <label asp-for="StartTime"></label>
-                    <div class='input-group date' id='startscheduledatetime'>
-                        <span class="input-group-addon">
-                            <span asp-validation-for="StartTime" class="text-danger glyphicon glyphicon-calendar"></span>
-                        </span>
-                        <input type="text" asp-for="StartTime" class="form-control" />
-                    </div>
+            <div class="form-group">
+                <label asp-for="StartTime"></label>
+                <div class='input-group date' id='startscheduledatetime'>
+                    <span class="input-group-addon">
+                        <span asp-validation-for="StartTime" class="text-danger glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type="text" asp-for="StartTime" class="form-control" />
                 </div>
-                <div class="form-group">
-                    <label asp-for="FinishTime"></label>
-                    <div class='input-group date' id='finishscheduledatetime'>
-                        <span class="input-group-addon float-left">
-                            <span asp-validation-for="FinishTime" class="text-danger glyphicon glyphicon-calendar"></span>
-                        </span>
-                        <input type="text" asp-for="FinishTime" class="form-control" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinishTime"></label>
+                <div class='input-group date' id='finishscheduledatetime'>
+                    <span class="input-group-addon float-left">
+                        <span asp-validation-for="FinishTime" class="text-danger glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type="text" asp-for="FinishTime" class="form-control" />
                 </div>
-                <div class="form-group">
-                    <label asp-for="Role"></label>
-                    <input asp-for="Role" class="form-control" />
-                    <span asp-validation-for="Role" class="text-danger float-left"></span>
-                </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role"></label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger float-left"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
         </form>
     </div>
 </div>
 
-<script type="text/javascript">
-    $(function () {
-        $('#startscheduledatetime').datetimepicker({
-            locale: 'pl',
-            inline: true,
-            sideBySide: true
+@section Scripts {
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+            @*asp-fallback-src="~/js/bootstrap-datetimepicker.min.js"
+            asp-fallback-test="datetimepicker()"
+            crossorigin="anonymous"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">*@
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+    
+
+    <script type="text/javascript">
+        $(function () {
+            $('#startscheduledatetime').datetimepicker({
+                locale: 'pl',
+                //inline: true,
+                //sideBySide: true,
+                stepping: 15
+            });
         });
-    });
-    $(function () {
-        $('#finishscheduledatetime').datetimepicker({
-            locale: 'pl',
-            inline: true,
-            sideBySide: true
+        $(function () {
+            $('#finishscheduledatetime').datetimepicker({
+                locale: 'pl',
+                stepping: 15
+            });
         });
-    });
-</script>
+    </script>
+
+}

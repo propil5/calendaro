@@ -6,12 +6,10 @@
     <title>@ViewData["Title"] - CalendaroNet</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/datetimepicker/bootstrap-datetimepicker.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />        
         <link rel="stylesheet" href="~/css/site.css" />
         @*<link rel="stylesheet" href="~/lib/jqueryui/jquery-ui.min.css">*@
-        <link rel="stylesheet" href="~/css/all.css" />
+        @*<link rel="stylesheet" href="~/css/fonts.css" />*@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     </environment>
     <environment exclude="Development">
@@ -84,7 +82,7 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+       
 
     </environment>
     <environment exclude="Development">
@@ -106,10 +104,16 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"
+                asp-fallback-src="~/js/bootstrap-datetimepicker.min.js"
+                asp-fallback-test="datetimepicker()"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+                </script>*@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
     @RenderSection("Scripts", required: false)
-    <script type="text/javascript">
+    @*<script type="text/javascript">
             $(function () {
                 $('#startscheduledatetime').datetimepicker({
                     locale: 'pl',
@@ -124,6 +128,6 @@
                     stepping: 15
                 });
             });
-     </script>
+     </script>*@
 </body>
 </html>
