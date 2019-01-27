@@ -33,10 +33,9 @@ namespace CalendaroNet.Controllers
             
        public async Task<IActionResult> Index()
        {
-           System.Security.Claims.ClaimsPrincipal currentUser = this.User;          
-           var id = _userManager.GetUserId(currentUser);
-           var currentEmployee = await _employeeService.GetEmployeeIdByUserIdAsync(id);
-           var schedule = await _scheduleManager.GetScheduleListForEmployeeAsync(currentEmployee);
+            var currentUser = await _userManager.GetUserAsync(User);
+            var currentEmployee = await _scheduleManager.GetEmployeeIdByUserIdAsync(currentUser.Id);
+            var schedule = await _scheduleManager.GetScheduleListForEmployeeAsync(currentEmployee);
 
            var model = new ScheduleListViewModel()
            {
@@ -49,9 +48,12 @@ namespace CalendaroNet.Controllers
        public async Task<IActionResult> Add(string returnUrl = null)
        {
            var employees = await _employeeService.GetListOfAllEmployeesAsync();
-           var model = new WorkScheduleView
+           var model = new WorkScheduleView()
            {
-               Employees = employees
+               CompanyEmployees = employees,
+               StartTime = DateTimeOffset.Now,
+               FinishTime = DateTimeOffset.Now,
+               Role = "Lekarz"
            };
            return View(model);
             

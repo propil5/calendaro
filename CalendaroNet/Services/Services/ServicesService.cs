@@ -92,5 +92,14 @@ namespace CalendaroNet.Services.Services
             return services;
         }
         #endregion
+
+        #region GetListOfAllClientServices()
+        public async Task<Service[]> GetListOfAllServicesClientAsync()
+        {
+            var services = await _context.Services
+                .ToArrayAsync();
+            return services;
+        }
+        #endregion
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using CalendaroNet.Models.Employee;
+using CalendaroNet.Models.Employees;
 
 namespace CalendaroNet.Models.Schedule
 {
@@ -9,13 +9,17 @@ namespace CalendaroNet.Models.Schedule
     {
         public Guid Id { get; set; }
 
-        public List<EmployeeViewModel> Employees {get; set;}
-        
+        public List<EmployeeViewModel> CompanyEmployees {get; set;}
+
+        [Display(Name = "Pracownik")]
         [Required]
         public Guid EmployeeId { get; set; }
-
+        [Required]
+        [Display(Name = "Data i godzina rozpoczêcia")]
         public DateTimeOffset StartTime { get; set; }
 
+        [Required]
+        [Display(Name = "Data i godzina zakoñczenia")]
         public DateTimeOffset FinishTime { get; set; }
 
         public String Role { get; set; }

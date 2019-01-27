@@ -117,6 +117,7 @@ namespace CalendaroNet.Services.Schedules
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
+        #endregion
 
         #region GetScheduleListForEmployeeAsync()
         public async Task<EmployeeSchedule[]> GetScheduleListForEmployeeAsync(Guid employeeId)
@@ -140,6 +141,15 @@ namespace CalendaroNet.Services.Schedules
         }
         #endregion
 
+        public async Task<Guid> GetEmployeeIdByUserIdAsync(string currentUserId)
+        {
+
+            var employee = await _context.Employees
+                .Where(x => x.UserId == currentUserId)
+                .SingleOrDefaultAsync();
+
+            return employee.Id;
+        }
 
         public Task<bool> DeleteScheduleDayAsync(Guid id)
         {
@@ -150,11 +160,5 @@ namespace CalendaroNet.Services.Schedules
         {
             throw new NotImplementedException();
         }
-
-        public Task<EmployeeSchedule[]> GetScheduleListForEmployeeAsync(int employeeId)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
     }
 }

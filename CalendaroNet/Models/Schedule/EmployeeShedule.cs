@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using CalendaroNet.Models.Employee;
+using CalendaroNet.Models.Employees;
 
 namespace CalendaroNet.Models.Schedule
 {
