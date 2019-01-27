@@ -1,49 +1,56 @@
-﻿@model ContactFormModel
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model ContactFormModel
 @{
     ViewData["Title"] = "Kontakt";
 }
-<h2>@ViewData["Title"]</h2>
+<h2 style="margin-left:33px">@ViewData["Title"]</h2>
 <div class="row" id="contact">
-<div class="container mt-5" >
-
-    <div class="row" style="height:550px;">
-      <div class="col-md-7 maps" >
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d82713.22172230785!2d21.72161381720766!3d49.62059791803995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x423b1ec61ba015df!2sPa%C5%84stwowa+Wy%C5%BCsza+Szko%C5%82a+Zawodowa+im.+Stanis%C5%82awa+Pigonia+w+Kro%C5%9Bnie!5e0!3m2!1spl!2spl!4v1546942892057" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+<div class=" col-sm-12 col-lg lg-12container mt-8" >
+      <div class="col-md-5 maps" >
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d82713.22172230785!2d21.72161381720766!3d49.62059791803995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x423b1ec61ba015df!2sPa%C5%84stwowa+Wy%C5%BCsza+Szko%C5%82a+Zawodowa+im.+Stanis%C5%82awa+Pigonia+w+Kro%C5%9Bnie!5e0!3m2!1spl!2spl!4v1546942892057" width="470" height="565" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
-      <div class="col-md-5">
-        <form  asp-action="Contact" method="POST">
-        <h2 class="text-uppercase mt-3 font-weight-bold text-white">Formularz kontaktowy</h2>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control mt-2" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+
+      <div class="col-md-7">
+        <form>
+        <div class="well well-sm">
+          
+          <fieldset>
+            <legend class="text-center">Skontaktuj się</legend>
+    
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="name">Imię i nazwisko</label>
+              <div class="col-md-9">
+                <input id="name" name="name" type="text" placeholder="Twoje imię i nazwisko" class="form-control">
               </div>
             </div>
-            <!-- <div class="col-lg-6">
-              < <div class="form-group">
-                <label asp-for="ContractEndDate"></label>
-                <input asp-for="ContractEndDate" class="form-control mt-2" />
-                <span asp-validation-for="ContractEndDate" class="text-danger"></span>
-            </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-group">
-                <input type="email" class="form-control mt-2" placeholder="Email" required>
+    
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email">Twój e-mail</label>
+              <div class="col-md-9">
+                <input id="email" name="email" type="text" placeholder="Twój e-mail" class="form-control">
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="form-group">
-                <input type="number" class="form-control mt-2" placeholder="Telephone" required>
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email">Numer telefonu</label>
+              <div class="col-md-9">
+                <input id="email" name="email" type="text" placeholder="Twój numer telefonu" class="form-control">
               </div>
             </div>
-            <div class="col-12">
-              <div class="form-group">
-                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Accepted" rows="3" required></textarea>
+    
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="message">Wiadomość</label>
+              <div class="col-md-9">
+                <textarea class="form-control" id="message" name="message" placeholder="Wpisz tutaj swoją wiadomośc proszę..." rows="5"></textarea>
               </div>
-            </div> -->
-            <div class="col-12">
+            </div>
+    
+            <!-- Form actions -->
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
@@ -51,33 +58,34 @@
                   Akceptujesz wrunki
                 </label>
               </div>
+              <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-primary btn-lg">Wyślij</button>
+              </div>
             </div>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-light" type="submit">Wyślij</button>
-            </div>
-          </div>
-        </form>
-        <div class="text-white">
-        <h2 class="text-uppercase mt-4 font-weight-bold">Prywatna klinika</h2>
+          </fieldset>
+          </form>
+        <div class="text-white" style="text-align: center;">
+        <h2 class="text-uppercase mt-4 font-weight-bold" >Prywatna klinika</h2>
 
         <i class="fas fa-phone mt-3"></i> <a href="tel:+">(+38) 123456</a><br>
         <i class="fas fa-phone mt-3"></i> <a href="tel:+">(+38) 123456</a><br>
         <i class="fa fa-envelope mt-3"></i> <a href="">info@calendaro.net</a><br>
         <i class="fas fa-globe mt-3"></i>Klinika, Wyspianskiego 1, 38-430 Krosno<br>
         <div class="my-4">
-        <a href=""><i class="fab fa-facebook fa-3x pr-4"></i></a>
-        <a href=""><i class="fab fa-linkedin fa-3x"></i></a>
+        <a href="https://www.facebook.com/StudiaKrosno/"><i class="fab fa-facebook fa-3x pr-4"></i></a>
+        <a href="https://www.facebook.com/StudiaKrosno/"><i class="fab fa-linkedin fa-3x"></i></a>
         </div>
         </div>
       </div>
-
-    </div>
+        </div>
+      </div>
+	</div>
 </div>
 </div>
+</div>
 
 
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@calendaro.net">Support@example.com</a><br />
+<address style="margin-top:20px; text-align: center;">
+    <strong>Support:</strong> <a href="mailto:Support-medi@calendaro.net">Support-medi@calendaro.net</a><br />
 </address>

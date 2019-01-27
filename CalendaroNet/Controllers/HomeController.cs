@@ -5,11 +5,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CalendaroNet.Models;
+using CalendaroNet.Models.Service;
+using CalendaroNet.Services.Services;
 
 namespace CalendaroNet.Controllers
 {
     public class HomeController : Controller
-    {
+    {   
+
+        private readonly IServiceService _serviceService;
+
+        public HomeController(IServiceService ServiceService)
+        {
+            _serviceService = ServiceService;
+        }
+            
         public IActionResult Index()
         {
             return View();
@@ -17,14 +27,14 @@ namespace CalendaroNet.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "O nas.";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Kontakt do nas.";
 
             return View();
         }
@@ -39,5 +49,22 @@ namespace CalendaroNet.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> Services()
+        {
+
+            ViewData["Message"] = "Nasze usługi!.";
+
+            var services = await _serviceService.GetListOfAllServicesClientAsync();
+
+            var model = new ServiceListViewModel()
+            {
+                Services = services
+            };
+
+            return View(model); 
+        }
+
+
     }
 }

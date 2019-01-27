@@ -1,10 +1,136 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
     ViewData["Title"] = "O nas ";
 }
 <h2>@ViewData["Title"]</h2>
 
 <p>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+      <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <div class="jumbotron">
+        <div class="container">
+          <h4 class="display-2">Cześć <a style="color: #1A1515#;"class="mainavbar" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)!</a>! Jesteśmy do twoich usług!</h1>
+          <p>Zarezerwuj usługę w naszym specjalnym systemie rezerwacji już dziś!</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Sprawdź »</a></p>
+        </div>
+      </div>
+        <img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 200px; height: 120px; margin-top: 20px;" src="~/images/logo.png" data-holder-rendered="true">
+        <p class="lead font-weight-normal" style="margin-top:20px">Polska grupa medyczna NZOZ Zespół Przychodni i Poradni Specjalistycznych BestMed. Jesteśmy firmą medyczną z d Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+Struktura składa się z wielu specjalistów i najnowoczęsniejszych metod leczenia.</p>
+        <a class="btn btn-outline-secondary" href="#"><h3>Zarezerwuj wizytę!</h3></a>
+      </div>
+      <div class="product-device shadow-sm d-none d-md-block"></div>
+      <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
 
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+        <div class="my-3 py-3">
+          <img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 500px; height: 300px; margin-top: 20px;" src="~/images/doctors2.jpg" data-holder-rendered="true"> 
+          <h2 class="display-5">Najlepsi specjaliście</h2>
+          <p class="lead">W naszym zespole:</p>
+          <p class="lead">Okulisci:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p>
+          <p class="lead">Dentyści:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p
+        </div>
+
+
+        <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 290px; height: 200px;" src="~/images/doctor1.jpg" data-holder-rendered="true">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Najlepsi specjaliście</h2>
+          <p class="lead">W naszym zespole:</p>
+          <p class="lead">Okulisci:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p>
+          <p class="lead">Dentyści:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p
+        </div>
+        <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Najlepsi specjaliście</h2>
+          <p class="lead">W naszym zespole:</p>
+          <p class="lead">Okulisci:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p>
+          <p class="lead">Dentyści:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p
+        </div>
+        <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+      <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5">Najlepsi specjaliście</h2>
+          <p class="lead">W naszym zespole:</p>
+          <p class="lead">Okulisci:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p>
+          <p class="lead">Dentyści:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p
+        </div>
+        <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+    </div>
+    
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Najlepsi specjaliście</h2>
+          <p class="lead">W naszym zespole:</p>
+          <p class="lead">Okulisci:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p>
+          <p class="lead">Dentyści:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p
+        </div>
+        <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5">Najlepsi specjaliście</h2>
+          <p class="lead">W naszym zespole:</p>
+          <p class="lead">Okulisci:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p>
+          <p class="lead">Dentyści:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p
+        </div>
+        <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Najlepsi specjaliście</h2>
+          <p class="lead">W naszym zespole:</p>
+          <p class="lead">Okulisci:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p>
+          <p class="lead">Dentyści:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p
+        </div>
+        <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5">Najlepsi specjaliście</h2>
+          <p class="lead">W naszym zespole:</p>
+          <p class="lead">Okulisci:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p>
+          <p class="lead">Dentyści:</p><p>dr Andrzej Jaworski,</p>
+          <p>dr Janusz Polski, dr Jurek Paszka</p
+        </div>
+        <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+    </div>
 Polska grupa medyczna NZOZ Zespół Przychodni i Poradni Specjalistycznych BestMed. Jesteśmy firmą medyczną z d Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 Struktura składa się z wielu specjalistów i najnowoczęsniejszych metod leczenia.
 </p>
