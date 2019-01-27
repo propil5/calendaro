@@ -3,14 +3,16 @@ using System;
 using CalendaroNet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CalendaroNet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190127202233_UpdateReservations")]
+    partial class UpdateReservations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,34 +137,6 @@ namespace CalendaroNet.Data.Migrations
                     b.ToTable("EmployeesSchedules");
                 });
 
-            modelBuilder.Entity("CalendaroNet.Models.ServiceReservations.ServiceReservation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AbsenceReason");
-
-                    b.Property<Guid>("CustomerId");
-
-                    b.Property<bool?>("Done");
-
-                    b.Property<Guid>("EmployeeId");
-
-                    b.Property<DateTimeOffset>("EstimatedTime");
-
-                    b.Property<DateTimeOffset>("ReservationTime");
-
-                    b.Property<Guid>("ServiceId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("ServiceReservations");
-                });
-
             modelBuilder.Entity("CalendaroNet.Models.Services.Service", b =>
                 {
                     b.Property<Guid>("Id")
@@ -182,6 +156,22 @@ namespace CalendaroNet.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("CalendaroNet.Models.Services.ServiceReservation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("ReservationDate");
+
+                    b.Property<Guid>("ServiceId");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiceReservations");
                 });
 
             modelBuilder.Entity("CalendaroNet.Models.TodoItem", b =>
@@ -334,19 +324,6 @@ namespace CalendaroNet.Data.Migrations
                     b.HasOne("CalendaroNet.Models.Employees.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CalendaroNet.Models.ServiceReservations.ServiceReservation", b =>
-                {
-                    b.HasOne("CalendaroNet.Models.Employees.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CalendaroNet.Models.Services.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

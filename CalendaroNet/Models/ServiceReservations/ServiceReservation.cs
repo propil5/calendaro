@@ -13,7 +13,7 @@ namespace CalendaroNet.Models.ServiceReservations
         public Guid Id { get; set; }
 
         [Required]
-        public Guid CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
         public virtual Service Service { get; set; }
 

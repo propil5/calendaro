@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CalendaroNet.Data;
 using CalendaroNet.Models;
+using CalendaroNet.Models.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,13 +19,22 @@ namespace CalendaroNet.Services.Resevations
             _context = context;
         }
 
-        public async Task<TodoItem[]> GetIncompleteItemsAsync(IdentityUser user)
-        {
-            var items = await _context.Items
-                .Where(x => x.IsDone == false && x.UserId == user.Id)
-                .ToArrayAsync();
-            return items;
-        }
+        //public async Task<Service[]> GetReservationsForUser(IdentityUser user)
+        //{
+        //    var items = await _context.ServiceReservations
+        //        .Where(x => x. == false && x. == user.Id)
+        //        .ToArrayAsync();
+        //    return items;
+        //}
+
+        //public async Task<Service[]> GetReservationsForEmployee(IdentityUser user)
+        //{
+        //    var items = await _context.Items
+        //        .Where(x => x.IsDone == false && x.UserId == user.Id)
+        //        .ToArrayAsync();
+        //    return items;
+        //}
+
 
         public async Task<bool> AddItemAsync(TodoItem newItem, IdentityUser user)
         {
