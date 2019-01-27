@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace CalendaroNet.Models.Service
+namespace CalendaroNet.Models.Services
 {
     public class ServiceViewModel
     {

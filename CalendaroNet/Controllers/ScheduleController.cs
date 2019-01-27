@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using CalendaroNet.Models;
 using CalendaroNet.Models.Employees;
 using CalendaroNet.Models.Schedule;
-using CalendaroNet.Models.Service;
+using CalendaroNet.Models.Services;
 using CalendaroNet.Services.Employees;
 using CalendaroNet.Services.Schedules;
 using Microsoft.AspNetCore.Authorization;

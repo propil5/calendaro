@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CalendaroNet.Models.Service
+namespace CalendaroNet.Models.Services
 {
     public class Service
     {

@@ -4,7 +4,7 @@ using System.Text;
 using CalendaroNet.Models;
 using CalendaroNet.Models.Employees;
 using CalendaroNet.Models.Schedule;
-using CalendaroNet.Models.Service;
+using CalendaroNet.Models.Services;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,8 +19,9 @@ namespace CalendaroNet.Data
         public DbSet<TodoItem> Items { get; set; }
         public DbSet<Service> Services { get; set; }       
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeSchedule> EmployeesSchedules {get; set;}
+        public DbSet<ServiceReservation> ServiceReservations { get; set; }
 
-        public DbSet<EmployeeSchedule> EmployeesSchedule {get; set;}
 
     }
 }

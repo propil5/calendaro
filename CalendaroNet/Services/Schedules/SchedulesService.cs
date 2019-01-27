@@ -27,7 +27,7 @@ namespace CalendaroNet.Services.Schedules
         #region GetEmployeeById()
         public async Task<EmployeeSchedule> GetScheduleAsync(int id)
         {
-            var schedule = await _context.EmployeesSchedule.FindAsync(id);
+            var schedule = await _context.EmployeesSchedules.FindAsync(id);
 
             return schedule;
 
@@ -38,7 +38,7 @@ namespace CalendaroNet.Services.Schedules
         public async Task<bool> AddScheduleDayAsync(EmployeeSchedule schedule)
         {
             schedule.Id = Guid.NewGuid();
-            _context.EmployeesSchedule.Add(schedule);
+            _context.EmployeesSchedules.Add(schedule);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
@@ -48,7 +48,7 @@ namespace CalendaroNet.Services.Schedules
         public async Task<bool> DeleteEmployeeAsync(Guid id)
         {
             var deleted = false;
-            var employee = await _context.EmployeesSchedule
+            var employee = await _context.EmployeesSchedules
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
 
@@ -69,7 +69,7 @@ namespace CalendaroNet.Services.Schedules
         #region UpdateEmployeeAsync()
         public async Task<bool> UpdateEmployeeAsync(Guid id, EmployeeSchedule changedSchedule)
         {
-            var schedule = await _context.EmployeesSchedule
+            var schedule = await _context.EmployeesSchedules
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
 
@@ -93,7 +93,7 @@ namespace CalendaroNet.Services.Schedules
 
         public async Task<bool> MarkAsPresent(Guid id)
         {
-             var schedule = await _context.EmployeesSchedule
+             var schedule = await _context.EmployeesSchedules
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
             schedule.Present = true;
@@ -108,7 +108,7 @@ namespace CalendaroNet.Services.Schedules
 
         public async Task<bool> AddAbsenceReason(Guid id, string reasonMessage)
         {
-                var schedule = await _context.EmployeesSchedule
+                var schedule = await _context.EmployeesSchedules
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
             schedule.Present = true;
@@ -122,7 +122,7 @@ namespace CalendaroNet.Services.Schedules
         #region GetScheduleListForEmployeeAsync()
         public async Task<EmployeeSchedule[]> GetScheduleListForEmployeeAsync(Guid employeeId)
         {
-            var scheduleList = await _context.EmployeesSchedule
+            var scheduleList = await _context.EmployeesSchedules
                 .Where(x => x.Present!= true && x.StartTime >= DateTimeOffset.Now && x.EmployeeId == employeeId)
                 .ToArrayAsync();
 
@@ -133,7 +133,7 @@ namespace CalendaroNet.Services.Schedules
         #region GetScheduleListForEmployeeFromDateAsync()
         public async Task<EmployeeSchedule[]> GetScheduleListFromDateAsync(Guid employeeId, DateTimeOffset startSchedule)
         {
-            var scheduleList = await _context.EmployeesSchedule
+            var scheduleList = await _context.EmployeesSchedules
                 .Where(x => x.Present!= true && x.StartTime >= startSchedule && x.EmployeeId == employeeId)
                 .ToArrayAsync();
 

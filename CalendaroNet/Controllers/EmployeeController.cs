@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CalendaroNet.Models;
 using CalendaroNet.Models.Employees;
-using CalendaroNet.Models.Service;
+using CalendaroNet.Models.Services;
 using CalendaroNet.Services.Employees;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

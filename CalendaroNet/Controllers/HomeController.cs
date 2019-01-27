@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CalendaroNet.Models;
-using CalendaroNet.Models.Service;
+using CalendaroNet.Models.Services;
 using CalendaroNet.Services.Services;
 
 namespace CalendaroNet.Controllers

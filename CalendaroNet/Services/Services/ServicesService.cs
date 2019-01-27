@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CalendaroNet.Data;
-using CalendaroNet.Models.Service;
+using CalendaroNet.Models.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace CalendaroNet.Services.Services
