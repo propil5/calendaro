@@ -1,15 +1,15 @@
 
 
-<h1>Rock, Paper, Scissors</h1>
+<h1>Kamień, papier i nożyce</h1>
 
 <div class="game">
 
     <script>
         // User choice
-        var userChoice = prompt("Do you choose rock, paper or scissors?");
+        var userChoice = prompt("Wybierasz papier, kamień czy nożyce?");
         if (! userChoice) {
             // User choice was undefined
-            document.write("<p>Player 1, you cheated! Refresh this screen and fight like a man.</p>");
+            document.write("<p>Player 1, oszukiwałeś! Odśwież stronę i walcz jak męzczyzna</p>");
         } else {
             // Display user choice
             document.write("<p>Player 1:" + " " + userChoice + "</p>");
@@ -17,14 +17,14 @@
         // Computer choice
         var computerChoice = Math.random();
         if (computerChoice < 0.34) {
-            computerChoice = "rock";
+            computerChoice = "kamień";
         } else if(computerChoice <= 0.67) {
-            computerChoice = "paper";
+            computerChoice = "papier";
         } else {
-            computerChoice = "scissors";
+            computerChoice = "nożyce";
         }
         // Display computer choice
-        document.write("<p>Computer:" + " " + computerChoice + "</p>");
+        document.write("<p>Komputer:" + " " + computerChoice + "</p>");
         // Compare user choice vs computer choice
         var compare = function(choice1,choice2) {
             if (choice1 === choice2) {

@@ -1,37 +1,37 @@
 @model ServiceViewModel
 @using CalendaroNet.Models.Service
 @{
-    ViewData["Title"] = "Add Service";
+    ViewData["Title"] = "Dodaj usługę";
 }
 
 <h2>@ViewData["Title"]</h2>
 <div>
     <div>
         <form  asp-action="AddService" method="POST">
-            <h4>Add new serivce.</h4>
+            <h4>Wprowadź opis usługi.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name"></label>
+                <label >Nazwa</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description"></label>
+                <label>Opis</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TimeRequiredInMinutes"></label>
+                <label>Wymagany czas</label>
                 <input asp-for="TimeRequiredInMinutes" class="form-control" />
                 <span asp-validation-for="TimeRequiredInMinutes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PriceInPln"></label>
+                <label>Cena w zł</label>
                 <input asp-for="PriceInPln" class="form-control" />
                 <span asp-validation-for="PriceInPln" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default">Add</button>
+            <button type="submit" class="btn btn-default">Dodaj</button>
         </form>
     </div>
 </div>
