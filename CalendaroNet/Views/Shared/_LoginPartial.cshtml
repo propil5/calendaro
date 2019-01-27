@@ -5,13 +5,37 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right lightercolor">
+
+    var currentUser = await UserManager.GetUserAsync(User);
+
+    var isAdmin = currentUser != null
+        && await UserManager.IsInRoleAsync(
+            currentUser,
+            Constants.AdministratorRole);
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right ">
+        
+        <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <ul style="margin-top: 15px; v;" class="">
+                <a class="mainavbar onclickstyle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Panel Admininstratora
+                </a>
+                <div class="dropdown-menu dropcolor navfontandcolor dropcolor border border-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a asp-controller="Admin" asp-action="Index">Rozszerz Panel Admina <i class="fas fa-tools"></i></a>
+                    <a asp-controller="Service" asp-action="Index"> Zarządzaj usługami<i class="fas fa-satellite-dish"></i></a>
+                    <a asp-controller="ManageUsers" asp-action="Index"> Użytkownicy <i style="float: right" class="fas fa-restroom"></i></a><br>
+                    <a asp-controller="Employee" asp-action="Index"> Pracownicy  <i class="fas fa-compress-arrows-alt"></i></a><br>
+                    <a asp-controller="Schedule" asp-action="Index">Harmonogram <i class="fas fa-calendar-day"></i></a><br>
+                    <a asp-controller="Random" asp-action="Index">Losuj <i class="fas fa-calendar-day"></i></a><br>
+                    <a asp-controller="Todo" asp-action="Index">Do zrobienia <i class="fas fa-calendar-day"></i></a>
+                </div>
+                </ul>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                <a class="mainavbar" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Cześć @UserManager.GetUserName(User)!</a>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link"><a class="navfontandcolor">Wyloguj</a></button>
             </li>
         </ul>
     </form>
@@ -19,7 +43,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right lightercolor">
-        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+        <li><a class="navfontandcolor" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+        <li><a class="navfontandcolor" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
     </ul>
 }
