@@ -21,7 +21,7 @@ namespace CalendaroNet.Models.ServiceReservations
 
         public virtual Employee Employee { get; set; }
   
-        public Guid EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
 
         public DateTimeOffset ReservationTime { get; set; }
 

@@ -6,6 +6,9 @@ namespace CalendaroNet.Models.Schedule
 {
     public class EmployeeSchedule
     {
+
+                    // @Html.DropDownListFor(x => x.EmployeeId, new SelectList(Model.Employees, "Id", "UserName"), new { @class = "form-control" })
+
         public Guid Id { get; set; }
         
         public virtual Employee Employee {get; set;}

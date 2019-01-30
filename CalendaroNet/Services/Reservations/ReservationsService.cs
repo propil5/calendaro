@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CalendaroNet.Data;
 using CalendaroNet.Models;
+using CalendaroNet.Models.ServiceReservations;
 using CalendaroNet.Models.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,35 +20,42 @@ namespace CalendaroNet.Services.Resevations
             _context = context;
         }
 
-        //public async Task<Service[]> GetReservationsForUser(IdentityUser user)
-        //{
-        //    var items = await _context.ServiceReservations
-        //        .Where(x => x. == false && x. == user.Id)
-        //        .ToArrayAsync();
-        //    return items;
-        //}
-
-        //public async Task<Service[]> GetReservationsForEmployee(IdentityUser user)
-        //{
-        //    var items = await _context.Items
-        //        .Where(x => x.IsDone == false && x.UserId == user.Id)
-        //        .ToArrayAsync();
-        //    return items;
-        //}
-
-
-        public async Task<bool> AddItemAsync(TodoItem newItem, IdentityUser user)
+        public async Task<ServiceReservation[]> GetReservationsForUser(IdentityUser user)
         {
-            newItem.Id = Guid.NewGuid();
-            newItem.IsDone = false;
-            newItem.DueAt = DateTimeOffset.Now.AddDays(3);
-            newItem.UserId = user.Id;
+            var reservations = await _context.ServiceReservations
+                .Where(x => x.Done == false && x.CustomerId == user.Id)
+                .ToArrayAsync();
+            return reservations;
+        }
 
-            _context.Items.Add(newItem);
+        public async Task<ServiceReservation[]> GetReservationsForEmployee(IdentityUser user)
+        {
+            var reservations = await _context.ServiceReservations
+                .Where(x => x.Done == false && x.EmployeeId == user.Id)
+                .ToArrayAsync();
+            return reservations;
+        }
+
+        //public async Task<bool> MarkReservationAsDone(Guid id)
+        //{
+        //    ar reservations = await _context.ServiceReservations
+        //        .Where(x => x.Done == false && x.EmployeeId == user.Id)
+        //        .ToArrayAsync();
+        //}
+
+        public async Task<bool> AddServiceReservationAsync(ServiceReservation reservation, IdentityUser user)
+        {
+            reservation.Id = Guid.NewGuid();
+            reservation.Done = false;
+            reservation.CustomerId = user.Id;
+
+            _context.ServiceReservations.Add(reservation);
 
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
+
+
 
         public async Task<bool> MarkDoneAsync(Guid id, IdentityUser user)
         {
