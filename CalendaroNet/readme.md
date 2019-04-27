@@ -19,11 +19,3 @@ How To Run
     VSCode/Console
         npm restore inside the project folder
         dotner run to run the project
-
-
-Problems:
-
-If codegenerator error happens change folder from 2.2.0 to 2.2.0-rtm-35687
-
-
-The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the GenerateQrCodeUri(string email, string unformattedKey) method in the /Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml.
